@@ -116,3 +116,53 @@ const game = () => {
 
 // strart the game function
 game();
+
+
+//text animation
+// const TEXT_DATA = 'Rock Paper and Scissors';
+const ANIMATION_DELAY = 50;
+const RESET_DELAY = 1000;
+const REPEAT_DELAY = 2000;
+const INFINITE_REPETITION = true;
+
+const animatedTag = document.querySelector(".intro");
+const splitTextData = TEXT_DATA.split("");
+
+for (let i = 0; i < splitTextData.length; i++) {
+    animatedTag.innerHTML += "<span class='letter'>" + splitTextData[i] + "</span";
+}
+
+let char = 0;
+let timer;
+
+function initAnimation(){
+    timer = setInterval(onTick, ANIMATION_DELAY)
+}
+initAnimation();
+
+function resetAnimationData(){
+    char = 0;
+    animatedTag.querySelectorAll('.letter').forEach(el=>
+        el.classList.remove('fade'))
+}
+
+function finishAnimation(){
+    clearInterval(timer);
+    timer = null;
+}
+
+function allowRepetition(){
+    setTimeout(resetAnimationData, RESET_DELAY)
+    setTimeout(initAnimation, REPEAT_DELAY)
+}
+
+function onTick () {
+    animatedTag.querySelectorAll('.letter')[char].classList.add('fade');
+    char++;
+
+    if(char === splitTextData.length)  {
+        finishAnimation();
+        INFINITE_REPETITION && allowRepetition()
+    }
+
+}
