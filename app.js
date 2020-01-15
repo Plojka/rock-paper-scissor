@@ -119,7 +119,7 @@ game();
 
 
 //text animation
-// const TEXT_DATA = 'Rock Paper and Scissors';
+const TEXT_DATA = document.getElementsByClassName('.intro');
 const ANIMATION_DELAY = 50;
 const RESET_DELAY = 1000;
 const REPEAT_DELAY = 2000;
